@@ -29,17 +29,6 @@ def capture_order(order_id):
     except Exception as e:
         return str(e), 500
     
-@app.route("/api/process-credit-card", methods=["POST"])
-def process_credit_card():
-    try:
-        payment_data = request.get_json()
-        # Credit card processing logic here
-        success = True
-        response_data = {"success": success}
-        return jsonify(response_data)
-    except Exception as e:
-        return str(e), 500
-    
     
 def generate_access_token():
     credentials = f"{CLIENT_ID}:{APP_SECRET}"
@@ -96,9 +85,17 @@ def capture_paypal_payment(order_id):
         "Content-Type": "application/json",
         "Authorization": f"Bearer {access_token}"
     }
-    response = requests.post(f"{BASE_URL}/v2/checkout/orders/{order_id}/capture", headers=headers)
+    capture_url = f"{BASE_URL}/v2/checkout/orders/{order_id}/capture"
+    
+    response = requests.post(capture_url, headers=headers)
+    
+    # Print the response status code and response data for debugging
+    print("Response Status Code:", response.status_code)
+    print("Response Data:", response.json())
+    
     response_data = response.json()
     return response_data
+
 if __name__ == "__main__":
     app.run(port=8888)
 
