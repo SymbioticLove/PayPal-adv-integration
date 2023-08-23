@@ -5,8 +5,8 @@ import base64
 app = Flask(__name__)
 
 # PayPal API config
-CLIENT_ID = "AQ_5NUKt79k6GOTABGNTPkahj_GsnshHwIENAmEj-eHCLU2GQm6lMeLncq1ZgxX0Li2wgqyUmVFwilsO"
-APP_SECRET = "ECm3IugDnzsgcFw03htnf2vr5H4vmgwSZbySlL3pf1LdHaADWncKPyGwA2oJNbAwXiVYWepPsc_QgXIN"
+CLIENT_ID = ""
+APP_SECRET = ""
 BASE_URL = "https://api-m.sandbox.paypal.com"
 
 @app.route("/")
